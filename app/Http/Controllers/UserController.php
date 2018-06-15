@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Comment;
 
 class UserController extends Controller
 {
@@ -52,10 +53,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, Comment $comment)
     {
         //
-        return view('users.show', ['user' => $user]);
+        $comments = Comment::latest()->get();
+
+
+
+        return view('users.show', ['user' => $user, 'comment' => $comment]);
     }
 
     /**
@@ -91,4 +96,8 @@ class UserController extends Controller
     {
         //
     }
+
+
+
+
 }
