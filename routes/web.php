@@ -31,13 +31,14 @@ Route::resource('users', 'UserController');
 Route::get('/contact', 'ContactsController@index');
 Route::post('/contact/confirm', 'ContactsController@confirm');
 // Route::get('/contact/confirm', 'ContactsController@confirm');
-// Route::post('/contact/complete', 'OrderController@ship');
-Route::post('/contact/complete', 'ContactsController@complete');
 Route::post('/contact/complete', 'OrderController@ship');
+Route::post('/contact/complete', 'ContactsController@complete');
+// Route::post('/contact/complete', 'OrderController@ship');
 
 Route::get('sample/mailable/preview', function () {
   return new App\Mail\OrderShipped();
 });
+
 
 // Route::group('middleware' => 'auth') , function() {
 //

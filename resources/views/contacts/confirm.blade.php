@@ -9,16 +9,18 @@
 </h1>
 <h4>
 <div class="container">入力内容</div>
-
+■ email
+<p>{{ $email }}</p>
+■ 性別
+<p>{{ $gender }}</p>
+■ 種類
+<p>{{ $type }}</p>
+■ 内容
+<p>
+  {!! nl2br(e($body)) !!}
+</p>
 <div class="container">
-  ■ email
-  <p>{{ $email }}</p>
-  ■ 性別
-  <p>{{ $gender }}</p>
-  ■ 種類
-  <p>{{ $type }}</p>
-  ■ 内容
-  <p>{{ $body }}</p>
+
 
   <p>
     <input type="submit" value="送信">

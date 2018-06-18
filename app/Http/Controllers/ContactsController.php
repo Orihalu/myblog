@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //ggg
 use App\Contact;     //class not foundが出るため
 use Illuminate\Support\Facades\Auth;
-use App\Mail;
+use App\Mail\OrderShipped;
 use Illuminate\Mail\Mailable;
+use Mail;  //Mailfacadeを利用するため
+use App\User;  //cc,bcc送信のため
+
 
 
 
@@ -17,8 +20,7 @@ use Illuminate\Mail\Mailable;
 class ContactsController extends Controller
 {
     public function index() {
-      // $types = Contacts::$types;
-      // $genders = Contacts::$genders;
+
       if (Auth::check()) {
 
       return view('contacts.index');
@@ -26,22 +28,11 @@ class ContactsController extends Controller
       else {
         return redirect('/login');
       }
-      // ->with([
-      //   'types' => $types,
-      //   'gender' => $genders
-      // ]);
+
     }
 
     public function confirm(Request $request) {
-      // $contact = new Contact();
-      //
-      // $contact->email = $request->email;
-      // $contact->gender = $request->gender;
-      // $contact->type = $request->type;
-      // $contact->body = $request->body;
-      // $contact->save();
 
-      // var_dump($request->all());
       $this->validate($request, [
         'email' => 'required|email',
         'gender' => 'required',
@@ -57,14 +48,12 @@ class ContactsController extends Controller
       $request->session()->put('type', $request->input('type'));
       $request->session()->put('body', $request->input('body'));
 
-      // if($request->session()->regenerateToken()) {
-      //   return redirect()->view('contacts.index');
+      if($request->session()->regenerateToken()) {
+      // if ($request->get('action') == 'back') {
+      //   return redirect()
+      //   ->route('contacts.index');
+      //           // ->withInput($request->except(['action', 'confirming']));
       // }
-      if ($request->get('action') == 'back') {
-        return redirect()
-        ->route('contacts.index');
-                // ->withInput($request->except(['action', 'confirming']));
-      }
 
 
 
@@ -77,42 +66,14 @@ class ContactsController extends Controller
 
       ]);
 
+    }
+
 
       // return view('contacts.confirm')->with('contact', $contact);
 
     }
 
     public function complete(Request $request) {
-
-      // \Mail::to($request->email)->send(new Contacts);
-    //   (([
-    //     'to' => $request->email,
-    //     'from' => 'usgbdrc@gmail.com',
-    //     'from_name' => 'Myblog',
-    //     'subject' => 'お問い合わせありがとうございました。',
-    //     'type' => $request->type,
-    //     'gender' => $request->gender,
-    //     'body' => $request->body
-    // ]));
-
-
-
-       // \Mail::to($email)->send(new OrderShipped($email,$gender,$type,$body));
-        // \Mail::send(new \App\Mail([
-        // 'to' => 'from@example.com',
-        // 'to_name' => 'MySite',
-        // 'from' => $request->email,
-        // 'from_name' => $request->name,
-        // 'subject' => 'サイトからのお問い合わせ',
-        // 'type' => $request->type,
-        // 'gender' => $request->gender,
-        // 'body' => $request->body
-        // ], 'from'));
-
-
-
-
-
 
 
       if ($request->get('action') == 'back') {
@@ -139,8 +100,11 @@ class ContactsController extends Controller
       $contact->save();
 
 
-
-
+// dd('sgdgdgs');
+// var_dump($contact->email);
+// var_dump($contact->gender);
+// var_dump($contact->type);
+// var_dump($contact->body);
       // $contact = new Contact();
       //
       // $contact->email = $request->email;
@@ -149,8 +113,18 @@ class ContactsController extends Controller
       // $contact->body = $request->body;
       //
       // $contact->save();
+
+// var_dump($contact);
+// dd($contact->toArray());
+
+      Mail::to($contact->email)
+      ->cc(User::find(1))
+      ->bcc(User::find(2))
+      ->send(new OrderShipped($contact));
+      return    view('contacts.complete');
+
+
       // return view('contacts.complete');
-      // return
 
 
     }

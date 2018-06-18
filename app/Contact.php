@@ -9,6 +9,7 @@ class Contact extends Model
     protected $fillable = [
       'email', 'type', 'gender', 'body'
     ];
+
     //
     // static $types = [
     //   'listについて', 'commentについて', 'userについて'

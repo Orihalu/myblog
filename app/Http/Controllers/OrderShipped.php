@@ -11,11 +11,12 @@ class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
-     // public $contact;
-      public $email;
-      public $gender;
-      public $type;
-      public $body;
+      // public $contact;
+      // public $email;
+      // public $gender;
+      // public $type;
+      // public $body
+      public $data;
 
 
 
@@ -24,17 +25,22 @@ class OrderShipped extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
+      $this->data = $data;
 
-    // $contact = $request;
-      // $this->email = $email;
-      // $this->gender = $gender;
-      // $this->type = $type;
-      // $this->body = $body;
+
+
+      // $contact = $request;
+      // $contact->email = $email;
+      // $contact->gender = $gender;
+      // $contact->type = $type;
+      // $contact->body = $body;
+
+
+
 
     }
-
     /**
      * Build the message.
      *
@@ -42,13 +48,14 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->from('usgbdrc@gmail.com')
+        return $this->from('testss@gmail.com')
+                    ->subject('お問い合わせ確認メール')
                     ->view('emails.template')
                     ->with([
-                      'email' => $this->email,
-                      'gender' => $this->gender,
-                      'type' => $this->type,
-                      'body' => $this->body,
+                      'email' => $this->data->email,
+                      'gender' => $this->data->gender,
+                      'type' => $this->data->type,
+                      'body' => $this->data->body,
                     ]);
     }
 }
