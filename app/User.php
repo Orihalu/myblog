@@ -35,4 +35,12 @@ class User extends Authenticatable
     public function comments() {
       return $this->hasMany('App\Comment');
     }
+    // user_idからuser_name
+    // public function getUsername($user_id) {
+    //   return
+    // }
+
+    public function isAdmin() {
+      return $this->id === config('admin_id');
+    }
 }
