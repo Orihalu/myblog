@@ -19,11 +19,13 @@ Blog Posts
 <ul>
   @forelse ($posts as $post)
   <li>
+    <body>
     <a href="{{ action('PostsController@show', $post) }}">{{ $post->title }}</a>
     <a href="{{ action('PostsController@edit', $post) }}" class="edit">[Edit]</a>
     <a href="#" class="del" data-id="{{ $post->id }}">[x]</a>
     <small>作成日時:{{ date("Y年 m月 d日", strtotime($post->created_at)) }}</small>
 
+    </body>
     <form method="post" action="{{ url('/posts', $post->id) }}" id="form_{{ $post->id }}">
       {{ csrf_field() }}
       {{ method_field('delete') }}

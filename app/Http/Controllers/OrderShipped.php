@@ -16,7 +16,7 @@ class OrderShipped extends Mailable
       // public $gender;
       // public $type;
       // public $body
-      public $data;
+      public $contact;
 
 
 
@@ -25,9 +25,10 @@ class OrderShipped extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($contact)
     {
-      $this->data = $data;
+// dd($contact);
+      $this->contact = $contact;
 
 
 
@@ -52,10 +53,10 @@ class OrderShipped extends Mailable
                     ->subject('お問い合わせ確認メール')
                     ->view('emails.template')
                     ->with([
-                      'email' => $this->data->email,
-                      'gender' => $this->data->gender,
-                      'type' => $this->data->type,
-                      'body' => $this->data->body,
+                      'email' => $this->contact->email,
+                      'gender' => $this->contact->gender,
+                      'type' => $this->contact->type,
+                      'body' => $this->contact->body,
                     ]);
     }
 }

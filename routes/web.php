@@ -31,7 +31,7 @@ Route::resource('users', 'UserController');
 Route::get('/contact', 'ContactsController@index');
 Route::post('/contact/confirm', 'ContactsController@confirm');
 // Route::get('/contact/confirm', 'ContactsController@confirm');
-Route::post('/contact/complete', 'OrderController@ship');
+// Route::post('/contact/complete', 'OrderController@ship');
 Route::post('/contact/complete', 'ContactsController@complete');
 // Route::post('/contact/complete', 'OrderController@ship');
 

@@ -10,14 +10,14 @@
 <form method="post" action="{{ url('/contact/confirm')}}">
   {{ csrf_field() }}
   <p>
-    <input type="text" name="email" placeholder="enter your email" value="{{ old('title') }}">
+    <input type="text" name="email" value="{{Auth::user()->email}}" readonly>
     @if ($errors->has('title'))
     <span class="error">{{ $errors->first('title')}}</span>
     @endif
   </p>
 
 
-    
+
     <input name="gender" type="radio" value="男性">男性
     <input name="gender" type="radio" value="女性">女性
     <select name="type">

@@ -48,13 +48,13 @@ class ContactsController extends Controller
       $request->session()->put('type', $request->input('type'));
       $request->session()->put('body', $request->input('body'));
 
-      if($request->session()->regenerateToken()) {
+      // if($request->session()->regenerateToken()) {
       // if ($request->get('action') == 'back') {
       //   return redirect()
       //   ->route('contacts.index');
       //           // ->withInput($request->except(['action', 'confirming']));
       // }
-
+// $request->session()->regenerateToken();
 
 
       return view('contacts.confirm')
@@ -66,7 +66,7 @@ class ContactsController extends Controller
 
       ]);
 
-    }
+
 
 
       // return view('contacts.confirm')->with('contact', $contact);
@@ -116,11 +116,15 @@ class ContactsController extends Controller
 
 // var_dump($contact);
 // dd($contact->toArray());
+// echo 'aaaa';
 
       Mail::to($contact->email)
-      ->cc(User::find(1))
-      ->bcc(User::find(2))
+      // ->cc(User::find(1))
+      // ->bcc(User::find(2))
       ->send(new OrderShipped($contact));
+
+
+      // echo 'aaaa';
       return    view('contacts.complete');
 
 

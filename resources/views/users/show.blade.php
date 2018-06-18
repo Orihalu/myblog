@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+
 <h1>
 <a href="{{ url('/users')}}" class="header-menu">Back</a>
 {{ $user->name }}
