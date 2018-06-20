@@ -30,10 +30,15 @@ Blog Posts
   <li class="h5">
     <body>
     <a href="{{ action('PostsController@show', $post) }}" >{{ $post->title }}</a>
-    @can('edit', $post)
+    @if (Auth::check() && Auth::user()->isAdmin())
+    <a href="{{ action('PostsController@edit', $post) }}" class="btn-sm btn-primary">[Edit]</a>
+    <a href="#" class="btn-sm btn-danger" data-id="{{ $post->id }}" >[x]</a>
+    @else
+    @can('edit',$post)
     <a href="{{ action('PostsController@edit', $post) }}" class="btn-sm btn-primary">[Edit]</a>
     <a href="#" class="btn-sm btn-danger" data-id="{{ $post->id }}" >[x]</a>
     @endcan
+    @endif
     <small>作成日時:{{ date("Y年 m月 d日", strtotime($post->created_at)) }}</small>
     </body>
     <form method="post" action="{{ url('/posts', $post->id) }}" id="form_{{ $post->id }}">

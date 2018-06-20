@@ -59,7 +59,7 @@ class PostsController extends Controller
       //$post = Post::findOrFail($id);
       //update destroyでも同様に
       // $this->authorize('edit', $post);
-
+// dd('uuu');
       if(Gate::allows('edit', $post)) {
       			// $post->edit();
             return view('posts.edit')->with('post',$post);

@@ -21,6 +21,8 @@ class PostPolicy
     */
 
     public function edit(User $user, Post $post) {
+      // dd($user);
+      //laravelのおかげで$userでもできるかも
       return Auth::user()->id == $post->user_id;
     }
 

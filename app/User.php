@@ -37,7 +37,7 @@ class User extends Authenticatable
     }
 //管理者かどうか調べる
     public function isAdmin() {
-      return $this->id == config('admin_id');
+      return $this->role == config('admin_role');
     }
 
     // protected static function boot() {
