@@ -5,10 +5,13 @@ namespace App\Policies;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use App\Post;
+<<<<<<< HEAD
 use App\Policies\UserPolicy;
 use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Auth;
 
+=======
+>>>>>>> 981499a6d708467ce2e1e41f15d86eaeb882b97c
 
 class PostPolicy
 {
@@ -21,7 +24,11 @@ class PostPolicy
     */
 
     public function edit(User $user, Post $post) {
+<<<<<<< HEAD
       return Auth::user()->id == $post->user_id;
+=======
+      return $user->id == $post->user_id;
+>>>>>>> 981499a6d708467ce2e1e41f15d86eaeb882b97c
     }
 
     /**
