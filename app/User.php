@@ -35,6 +35,7 @@ class User extends Authenticatable
     public function comments() {
       return $this->hasMany('App\Comment');
     }
+<<<<<<< HEAD
 //管理者かどうか調べる
     public function isAdmin() {
       return $this->id == config('admin_id');
@@ -46,4 +47,14 @@ class User extends Authenticatable
     //     $user->assignRole(config('auth.defaults.role'));
     //   });
     //
+=======
+    // user_idからuser_name
+    // public function getUsername($user_id) {
+    //   return
+    // }
+
+    public function isAdmin() {
+      return $this->id === config('admin_id');
+    }
+>>>>>>> 981499a6d708467ce2e1e41f15d86eaeb882b97c
 }

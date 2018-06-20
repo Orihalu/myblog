@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //グローバル変数のせってい
+        config(['admin_id' => 1]);//used at User.php
     }
 
     /**
