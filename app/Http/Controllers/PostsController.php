@@ -65,7 +65,7 @@ class PostsController extends Controller
             return view('posts.edit')->with('post',$post);
       		} else {
       			// abort(403);
-            return back()->with('message', 'not allowed');
+            return redirect('/')->with('message', 'No authorization');
       		}
 
       return view('posts.edit')->with('post',$post);
@@ -79,6 +79,13 @@ class PostsController extends Controller
       }
 
       public function destroy(Post $post) {
+        // if(Gate::allows('destroy', $post)) {
+        //   $post->delete();
+        //   return redirect('/');
+        // }
+        // else {
+        //   return redirect('/')->with('message','no auth');
+        // }
         $post->delete();
         return redirect('/');
       }

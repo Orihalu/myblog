@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
- var cmds = document.getElementsByClassName('del');
+ var cmds = document.getElementsByClassName('btn-sm btn-danger');
  var i;
 
  for (i = 0; i < cmds.length; i++) {
