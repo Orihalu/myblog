@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
@@ -35,4 +35,15 @@ class User extends Authenticatable
     public function comments() {
       return $this->hasMany('App\Comment');
     }
+//管理者かどうか調べる
+    public function isAdmin() {
+      return $this->id == config('admin_id');
+    }
+
+    // protected static function boot() {
+    //   parent::boot();
+    //   static::created (function($user) {
+    //     $user->assignRole(config('auth.defaults.role'));
+    //   });
+    //
 }

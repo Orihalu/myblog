@@ -38,7 +38,17 @@ Route::post('/contact/complete', 'ContactsController@complete');
 Route::get('sample/mailable/preview', function () {
   return new App\Mail\OrderShipped();
 });
+//all user
+// Route::group(['middleware' => ['auth', 'can:user-higher']]) function() {
+//   Route::get('/post', 'PostsController@index')->name('post.index');
+// }
+//
+// //admin user
+// Route::
 
+Route::group(['middleware' => 'owner_auth'], function() {
+  Route::get('/owner/home', 'Owner\HomeController@index');
+});
 
 // Route::group('middleware' => 'auth') , function() {
 //

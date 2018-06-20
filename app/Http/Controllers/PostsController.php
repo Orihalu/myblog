@@ -8,6 +8,7 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Comment;
+use Gate;
 
 
 
@@ -56,6 +57,17 @@ class PostsController extends Controller
 
       public function edit(Post $post) {
       //$post = Post::findOrFail($id);
+      //update destroyでも同様に
+      // $this->authorize('edit', $post);
+
+      if(Gate::allows('edit', $post)) {
+      			// $post->edit();
+            return view('posts.edit')->with('post',$post);
+      		} else {
+      			// abort(403);
+            return back()->with('message', 'not allowed');
+      		}
+
       return view('posts.edit')->with('post',$post);
       }
 
