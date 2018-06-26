@@ -19,15 +19,19 @@ use App\User;  //cc,bcc送信のため
 */
 class ContactsController extends Controller
 {
+
+  public function __construct(){
+    $this->middleware('auth');
+  }
     public function index() {
 
-      if (Auth::check()) {
+      // if (Auth::check()) {
 
       return view('contacts.index');
-    }
-      else {
-        return redirect('/login');
-      }
+    // }
+      // else {
+      //   return redirect('/login');
+      // }
 
     }
 

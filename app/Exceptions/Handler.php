@@ -50,19 +50,24 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-      if ($exception instanceof TokenMismatchException) {
-             return redirect('/contact');
-        }
+      //gets the class exceptions
+      $class = get_class($exception);
+
+      switch ($class) {
+        case 'Illuminate\Auth\AuthenticationException':
+          $guard = array_get($exception->guards(),0);
+          switch ($guard) {
+            case 'admin':
+              $login = 'admin.login';
+              break;
+            default:
+              $login = 'login';
+              break;
+          }
+          return redirect()->route($login);
+      }
         return parent::render($request, $exception);
     }
-
-    protected function unauthenticated($request, AuthenticationException $exception)
-{
-    return $request->expectsJson()
-                ? response()->json(['message' => $exception->getMessage()], 401)
-                : redirect()->guest(route('/login'));
-}
-
 
 
 

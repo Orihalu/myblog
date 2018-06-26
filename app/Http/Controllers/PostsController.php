@@ -16,6 +16,9 @@ use Gate;
 
 class PostsController extends Controller
 {
+
+
+
     public function index(){
       //$posts = \App\Post::all();
       //$posts = Post::all();
@@ -23,14 +26,14 @@ class PostsController extends Controller
       //$posts = Post::all();
       $posts = Post::latest()->get();
 
-      if (Auth::check()) {
+      // if (Auth::check()) {
       //dd($posts->toArray()); //dump die
       //return view('posts.index', ['posts' => $posts]);
       return view('posts.index')->with('posts', $posts);
-    }
-      else {
-        return redirect('/login');
-      }
+    // }
+      // else {
+      //   return redirect('/login');
+      // }
     }
     //public function show($id) {
     public function show(Post $post,User $user) {

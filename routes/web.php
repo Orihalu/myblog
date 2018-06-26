@@ -53,3 +53,11 @@ Route::group(['middleware' => 'owner_auth'], function() {
 // Route::group('middleware' => 'auth') , function() {
 //
 // }
+
+
+Route::prefix('admin')->group(function() {
+  Route::get('/home', 'Admin\HomeController@index')->name('admin.dashboard');
+  Route::get('/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+  Route::post('/login', 'Admin\LoginController@login')->name('admin.login.submit');
+  Route::get('/logout', 'Admin\LoginController@logout')->name('admin.logout');
+});

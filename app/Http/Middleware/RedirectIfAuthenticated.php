@@ -17,10 +17,21 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+      switch ($guard) {
+      case 'admin':
         if (Auth::guard($guard)->check()) {
-            return redirect('/');
+          return redirect()->route('admin.dashboard');
         }
+        break;
 
-        return $next($request);
+      default:
+        if (Auth::guard($guard)->check()) {
+          return redirect('/home');
+        }
+        break;
     }
+// dd($request);
+//$next means next middleware
+      return $next($request);
+  }
 }

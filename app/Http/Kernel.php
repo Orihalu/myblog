@@ -3,7 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use App\Http\Middleware\OwnerAuth;
+// use App\Http\Middleware\OwnerAuth;
 
 
 
@@ -63,6 +63,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'owner_auth' => OwnerAuth::class,
+        // 'owner_auth' => OwnerAuth::class,
     ];
 }

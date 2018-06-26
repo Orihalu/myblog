@@ -10,6 +10,10 @@ use App\User;
 
 class CommentsController extends Controller
 {
+
+  public function __construct(){
+    $this->middleware('auth');
+  }
     //
     public function store(Request $request, Post $post, User $user) {
       $this->validate($request, [
