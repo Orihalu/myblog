@@ -73,6 +73,14 @@ select {
   width: 400px;
   padding: 5px;
 }
+h5 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+h6 {
+  font-size: 20px;
+  margin-bottom: auto;
+}
 
 /* .form-item {
   padding: 20px 0 10px 0;

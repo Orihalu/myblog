@@ -22,7 +22,9 @@
   <tbody>
     <tr>
       <th scope="row">
+        <a href="{{ action('AdminContactsController@show', $contact) }}">
         {{ $contact->id }}
+        </a>
         <form>
           {{ csrf_field() }}
         </form>

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Contact;
+use App\Http\Controllers\Controller;
+
 
 class AdminContactsController extends Controller
 {
@@ -25,6 +29,6 @@ class AdminContactsController extends Controller
 
 
     public function show(Contact $contact) {
-      return view('admin.contact', ['contact' => $contact]);
+      return view('admin.showcontact', ['contact' => $contact]);
     }
 }

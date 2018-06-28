@@ -1,11 +1,3 @@
-{{--
-@section('title')
-Users
-@endsection
-
-
-@section('title', 'Users')
---}}
 
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">

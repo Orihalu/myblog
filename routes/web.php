@@ -61,4 +61,5 @@ Route::prefix('admin')->group(function() {
   Route::post('/login', 'Admin\LoginController@login')->name('admin.login.submit');
   Route::get('/logout', 'Admin\LoginController@logout')->name('admin.logout');
   Route::get('/contact', 'AdminContactsController@index')->name('admin.contact');
+  Route::get('/contact/{contact}','AdminContactsController@show')->name('admin.showcontact');
 });

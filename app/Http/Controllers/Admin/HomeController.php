@@ -19,6 +19,6 @@ class HomeController extends Controller
     public function index() {
       // dd(Auth::user());
       // dd(Auth::user()->role);
-      return 'OKOKOK';
+      return view('admin.home');
     }
 }
